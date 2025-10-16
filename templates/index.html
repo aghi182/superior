@@ -1,0 +1,886 @@
+{% extends "layout_public.html" %}
+{% block content %}
+<style>
+  /* Hero Section */
+  #hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  #hero .parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    will-change: transform;
+  }
+
+  #hero .layer-bg {
+    background-image: url('{{ url_for("pictures", filename="hero-background.jpg") }}');
+    background-attachment: fixed;
+    filter: brightness(0.65);
+    z-index: 1;
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
+  }
+
+  #hero .layer-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+
+  #hero .content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    padding: 0 1rem;
+    animation: fadeDown 1.5s ease;
+  }
+
+  #hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  #hero p {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Sections */
+  section {
+    padding: 80px 0;
+    min-height: 60vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  section h2 {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 1px;
+  }
+
+  /* Buttons */
+  #scrollTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #003399;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 999;
+    transition: background 0.3s ease;
+  }
+  #scrollTop.show { display: flex; animation: fadeIn 0.3s ease; }
+  #scrollTop:hover { background: #002080; }
+
+  #wa-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 999;
+    animation: pulse 1.5s infinite;
+    transition: background 0.3s ease;
+  }
+  #wa-btn:hover { background: #1ebe57; }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* Lazy Load Fade */
+  img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  img.lazyloaded {
+    opacity: 1;
+  }
+
+  /* Service Section Styles */
+  .service-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .title-prefix {
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .title-main {
+    color: #002d72;
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: block;
+  }
+  
+  .service-image {
+    margin-bottom: 1rem;
+  }
+  
+  .service-image img {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .service-image img:hover {
+    transform: translateY(-5px);
+  }
+  
+  .service-categories {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .service-category-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .service-category-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .service-category-item h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .service-category-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .service-category-item li {
+    padding: 0.3rem 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  
+  .service-category-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  /* Project Section Styles */
+  .project-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  }
+  
+  .project-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .project-card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+  
+  .project-card .card-body {
+    padding: 1.5rem;
+  }
+  
+  .project-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #002d72;
+    margin-bottom: 0.5rem;
+  }
+  
+  .project-card .card-text {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* Contact Section Styles */
+  .contact-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+  }
+  
+  .contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+  
+  .contact-link {
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+  }
+  
+  .whatsapp-link {
+    color: #25D366;
+    background: rgba(37, 211, 102, 0.1);
+  }
+  
+  .whatsapp-link:hover {
+    color: white;
+    background: #25D366;
+    transform: translateY(-2px);
+  }
+  
+  .email-link {
+    color: #007bff;
+    background: rgba(0, 123, 255, 0.1);
+  }
+  
+  .email-link:hover {
+    color: white;
+    background: #007bff;
+    transform: translateY(-2px);
+  }
+  
+  .email-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Vision Section Styles */
+  .vision-section {
+    background: #f8f9fa;
+  }
+  
+  .vision-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #002d72;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .vision-image img {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  /* Mission Section Styles */
+  .mission-section {
+    background: white;
+  }
+  
+  .mission-flow {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .mission-item {
+    flex: 1;
+    min-width: 200px;
+    max-width: 250px;
+  }
+  
+  .mission-box {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .mission-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+  
+  .mission-box.quality {
+    border-top-color: #007bff;
+  }
+  
+  .mission-box.competitiveness {
+    border-top-color: #6f42c1;
+  }
+  
+  .mission-box.concreteness {
+    border-top-color: #6f42c1;
+  }
+  
+  .mission-box.punctuality {
+    border-top-color: #6f42c1;
+  }
+  
+  .mission-box.satisfaction {
+    border-top-color: #6c757d;
+  }
+  
+  .mission-box h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #002d72;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mission-box p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 768px) {
+    .mission-flow {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .mission-item {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+</style>
+
+<!-- ========================= HERO ========================= -->
+<section id="hero">
+  <div class="parallax-layer layer-bg"></div>
+  <div class="parallax-layer layer-overlay"></div>
+  <div class="content" data-aos="fade-up" data-aos-duration="1000">
+    <h1>{{ data.home.hero_title1 if data.home else "Welcome" }}<br>
+      <span class="fw-bold">{{ data.home.hero_title2 if data.home else "Superior Teknik" }}</span>
+    </h1>
+    <p>{{ data.home.hero_subtitle if data.home else "Engineering Excellence & Innovation" }}</p>
+    {% if data.home and data.home.hero_button_text %}
+    <a href="{{ data.home.hero_button_link }}" class="btn btn-primary btn-lg mt-3">
+      {{ data.home.hero_button_text }}
+    </a>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ========================= ABOUT ========================= -->
+<section id="about" class="company-profile-section py-5 bg-white" data-aos="fade-up">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+        <div class="profile-image position-relative">
+          <img 
+            src="{{ url_for('pictures', filename=data.about.images.split('/')[-1]) if data.about and data.about.images else url_for('static', filename='pictures/placeholder.png') }}"
+            alt="Company Profile"
+            class="img-fluid rounded shadow"
+            loading="lazy"
+            onerror="this.src='{{ url_for('static', filename='pictures/placeholder.png') }}'"
+            data-aos="fade-up" data-aos-delay="100">
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="profile-content">
+          <h2 class="section-title mb-3" data-aos="fade-up">{{ data.about.title if data.about else 'Tentang Kami' }}</h2>
+          <p class="profile-description mb-4" data-aos="fade-up" data-aos-delay="100">
+            {{ data.about.description if data.about else 'Deskripsi tentang perusahaan akan ditampilkan di sini.' }}
+          </p>
+          <div class="d-flex gap-4 flex-wrap">
+            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+              <h4 class="fw-bold text-primary mb-0">50+</h4>
+              <small>Projects Completed</small>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+              <h4 class="fw-bold text-primary mb-0">3+</h4>
+              <small>Years Experience</small>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+              <h4 class="fw-bold text-primary mb-0">100%</h4>
+              <small>Client Satisfaction</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================= PROJECTS ========================= -->
+<section id="projects" data-aos="fade-up">
+  <div class="container">
+    <h2 class="text-center mb-4" data-aos="fade-up">COMPLETED AND ONGOING PROJECTS</h2>
+    <div class="row justify-content-center">
+      {% for project in data.projects %}
+      {% if project.status == 1 %}
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+        <div class="card h-100 project-card">
+          <img src="{{ url_for('pictures', filename=project.image_url.split('/')[-1]) if project.image_url else url_for('static', filename='pictures/placeholder.png') }}" 
+               alt="{{ project.title }}" 
+               class="card-img-top" 
+               loading="lazy"
+               onerror="this.src='{{ url_for('static', filename='pictures/placeholder.png') }}'"
+               data-aos="fade-up" data-aos-delay="100">
+          <div class="card-body text-center">
+            <h5 class="card-title" data-aos="fade-up" data-aos-delay="200">{{ project.title }}</h5>
+            {% if project.client %}
+            <p class="card-text text-muted mb-2" data-aos="fade-up" data-aos-delay="250">
+              <i class="fas fa-building me-1"></i>{{ project.client }}
+            </p>
+            {% endif %}
+            <p class="card-text" data-aos="fade-up" data-aos-delay="300">{{ project.description }}</p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ========================= SERVICES ========================= -->
+<section id="services" class="bg-light" data-aos="fade-up">
+  <div class="container">
+    <!-- Mechanical System -->
+    <div class="service-category mb-5">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up">
+          <h2 class="service-title">
+            <span class="title-prefix">WHAT WE DO :</span>
+            <span class="title-main">MECHANICAL SYSTEM</span>
+          </h2>
+        </div>
+      </div>
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-image">
+            <img src="{{ url_for('pictures', filename='mechanical-1.png') }}" 
+                 alt="HVAC Systems - PT. Superior Teknik Indonesia" 
+                 class="img-fluid rounded" 
+                 loading="lazy"
+                 width="400"
+                 height="300">
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-image">
+            <img src="{{ url_for('pictures', filename='mechanical-2.png') }}" 
+                 alt="Fire Fighting Systems - PT. Superior Teknik Indonesia" 
+                 class="img-fluid rounded" 
+                 loading="lazy"
+                 width="400"
+                 height="300">
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-image">
+            <img src="{{ url_for('pictures', filename='mechanical-3.png') }}" 
+                 alt="Utility & Process Systems - PT. Superior Teknik Indonesia" 
+                 class="img-fluid rounded" 
+                 loading="lazy"
+                 width="400"
+                 height="300">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="service-categories">
+            <div class="row g-3">
+              <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-category-item hvac">
+                  <h4>HVAC</h4>
+                  <ul>
+                    <li>VRV System</li>
+                    <li>Chilled Water System</li>
+                    <li>Ductworks</li>
+                    <li>etc.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-category-item fire-fighting">
+                  <h4>Fire Fighting</h4>
+                  <ul>
+                    <li>Sprinklers</li>
+                    <li>Hydrants</li>
+                    <li>Fire Suppression</li>
+                    <li>etc.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="service-category-item utility">
+                  <h4>Utility & Process</h4>
+                  <ul>
+                    <li>Gas piping</li>
+                    <li>Compressed Air</li>
+                    <li>Chiller, Boiler</li>
+                    <li>etc.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Electrical System -->
+    <div class="service-category">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up">
+          <h2 class="service-title">
+            <span class="title-prefix">WHAT WE DO :</span>
+            <span class="title-main">ELECTRICAL SYSTEM</span>
+          </h2>
+        </div>
+      </div>
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-image">
+            <img src="{{ url_for('pictures', filename='electrical-1.png') }}" 
+                 alt="Power Distribution Systems - PT. Superior Teknik Indonesia" 
+                 class="img-fluid rounded" 
+                 loading="lazy"
+                 width="400"
+                 height="300">
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-image">
+            <img src="{{ url_for('pictures', filename='electrical-2.png') }}" 
+                 alt="Low Current Systems - PT. Superior Teknik Indonesia" 
+                 class="img-fluid rounded" 
+                 loading="lazy"
+                 width="400"
+                 height="300">
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-image">
+            <img src="{{ url_for('pictures', filename='electrical-3.png') }}" 
+                 alt="General Electrical Systems - PT. Superior Teknik Indonesia" 
+                 class="img-fluid rounded" 
+                 loading="lazy"
+                 width="400"
+                 height="300">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="service-categories">
+            <div class="row g-3">
+              <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-category-item power">
+                  <h4>Power Distribution</h4>
+                  <p>MV/LV panels, Cabling.</p>
+                </div>
+              </div>
+              <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-category-item low-current">
+                  <h4>Low Current</h4>
+                  <p>BMS, Fire Alarms.</p>
+                </div>
+              </div>
+              <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="service-category-item general">
+                  <h4>General Electrical</h4>
+                  <p>Lighting, wiring, Electrical Instruments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= VISION ========================= -->
+<section id="vision" class="vision-section py-5" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-12" data-aos="fade-up">
+        <h2 class="section-title text-center mb-5">THE VISION</h2>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="vision-image">
+          {% if data.vision and data.vision.image_url %}
+          <img src="{{ url_for('pictures', filename=data.vision.image_url.split('/')[-1]) }}" 
+               alt="Data Center Vision - PT. Superior Teknik Indonesia" 
+               class="img-fluid rounded" 
+               loading="lazy"
+               width="600"
+               height="400"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; background:#f8f9fa; border:2px dashed #dee2e6; padding:2rem; text-align:center; border-radius:20px;">
+            <i class="fas fa-eye fa-3x text-muted mb-3"></i>
+            <p class="text-muted">Gambar Vision</p>
+          </div>
+          {% else %}
+          <img src="{{ url_for('pictures', filename='vision-bg.png') }}" 
+               alt="Data Center Vision - PT. Superior Teknik Indonesia" 
+               class="img-fluid rounded" 
+               loading="lazy"
+               width="600"
+               height="400"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; background:#f8f9fa; border:2px dashed #dee2e6; padding:2rem; text-align:center; border-radius:20px;">
+            <i class="fas fa-eye fa-3x text-muted mb-3"></i>
+            <p class="text-muted">Gambar Vision</p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="vision-content">
+          <h3 class="vision-title">{{ data.vision.description if data.vision else "To be the most trusted and preferred partner for engineering and construction solutions in Indonesia." }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= MISSION ========================= -->
+<section class="mission-section py-5" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-12" data-aos="fade-up">
+        <h2 class="section-title text-center mb-5">THE MISSION</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" data-aos="fade-up" data-aos-delay="200">
+        <div class="mission-flow">
+          <div class="mission-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="mission-box quality">
+              <h4>Quality</h4>
+              <p>Deliver high value</p>
+            </div>
+          </div>
+          <div class="mission-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="mission-box competitiveness">
+              <h4>Competitiveness</h4>
+              <p>Best market pricing</p>
+            </div>
+          </div>
+          <div class="mission-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="mission-box concreteness">
+              <h4>Concreteness</h4>
+              <p>Sustainable growth</p>
+            </div>
+          </div>
+          <div class="mission-item" data-aos="fade-up" data-aos-delay="400">
+            <div class="mission-box punctuality">
+              <h4>Punctuality</h4>
+              <p>On-time delivery</p>
+            </div>
+          </div>
+          <div class="mission-item" data-aos="fade-up" data-aos-delay="500">
+            <div class="mission-box satisfaction">
+              <h4>Satisfaction</h4>
+              <p>Client-focused outcomes</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= CONTACT ========================= -->
+<section id="contact" class="bg-light" data-aos="fade-up">
+  <div class="container text-center">
+    <h2 data-aos="fade-up">{{ data.contact.title if data.contact else "Contact Us" }}</h2>
+    {% if data.contact %}
+      <div class="row justify-content-center">
+        {% if data.contact.person1_status == 1 and data.contact.person1_name and data.contact.person1_phone %}
+        <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="card p-3 contact-card">
+            <h5 data-aos="fade-up" data-aos-delay="100"><i class="fas fa-user"></i> {{ data.contact.person1_name }}</h5>
+            <p data-aos="fade-up" data-aos-delay="200">
+              <a href="https://wa.me/{{ data.contact.person1_phone.replace('+', '').replace('-', '').replace(' ', '') }}?text={{ data.contact.text_wa if data.contact.text_wa else 'Halo PT Superior Teknik Indonesia' }}" 
+                 class="contact-link whatsapp-link" 
+                 target="_blank" 
+                 rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i> {{ data.contact.person1_phone }}
+              </a>
+            </p>
+          </div>
+        </div>
+        {% endif %}
+        {% if data.contact.person2_status == 1 and data.contact.person2_name and data.contact.person2_phone %}
+        <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="card p-3 contact-card">
+            <h5 data-aos="fade-up" data-aos-delay="100"><i class="fas fa-user"></i> {{ data.contact.person2_name }}</h5>
+            <p data-aos="fade-up" data-aos-delay="200">
+              <a href="https://wa.me/{{ data.contact.person2_phone.replace('+', '').replace('-', '').replace(' ', '') }}?text={{ data.contact.text_wa if data.contact.text_wa else 'Halo PT Superior Teknik Indonesia' }}" 
+                 class="contact-link whatsapp-link" 
+                 target="_blank" 
+                 rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i> {{ data.contact.person2_phone }}
+              </a>
+            </p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      {% if data.contact.email %}
+      <div class="row justify-content-center">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="300">
+          <div class="card p-3 contact-card email-card">
+            <p data-aos="fade-up" data-aos-delay="100">
+              <a href="mailto:{{ data.contact.email }}?subject=Informasi Layanan PT Superior Teknik Indonesia" 
+                 class="contact-link email-link" 
+                 target="_blank" 
+                 rel="noopener noreferrer">
+                <i class="fas fa-envelope"></i> {{ data.contact.email }}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    {% else %}
+      <p data-aos="fade-up">Silakan hubungi kami untuk informasi lebih lanjut.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ========================= BUTTONS ========================= -->
+<button id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+{% if data.contact and data.contact.person1_phone %}
+<a href="https://wa.me/{{ data.contact.person1_phone.replace('+', '').replace('-', '').replace(' ', '') }}?text={{ data.contact.text_wa if data.contact.text_wa else 'Halo PT Superior Teknik Indonesia' }}" id="wa-btn" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+{% endif %}
+
+<!-- ========================= SCRIPTS ========================= -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script>
+  AOS.init();
+
+  // Navbar scroll effect
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Scroll Top
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('show', window.scrollY > 300);
+  });
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Scroll Reveal
+  ScrollReveal().reveal('section', {
+    distance: '40px',
+    duration: 1000,
+    easing: 'ease-out',
+    origin: 'bottom',
+    interval: 200,
+    opacity: 0,
+    scale: 0.98
+  });
+
+  // Active link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      const link = document.querySelector(`.navbar-nav .nav-link[href="#${id}"]`);
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: "-30% 0px -70% 0px" });
+  sections.forEach(section => observer.observe(section));
+
+  // Lazyload effect
+  document.addEventListener("DOMContentLoaded", () => {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    lazyImages.forEach(img => {
+      img.addEventListener('load', () => img.classList.add('lazyloaded'));
+    });
+  });
+</script>
+{% endblock %}

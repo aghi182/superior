@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>{{ 'Edit Project' if project else 'Add Project' }}</h2>
+  <form method="post" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input class="form-control" name="title" value="{{ project['title'] if project else '' }}" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Client</label>
+          <input class="form-control" name="client" value="{{ project['client'] if project else '' }}">
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" name="description" rows="4">{{ project['description'] if project else '' }}</textarea>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <input class="form-control" name="category" value="{{ project['category'] if project else '' }}">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Sort Order</label>
+          <input type="number" class="form-control" name="sort_order" value="{{ project['sort_order'] if project else '0' }}" min="0">
+          <small class="form-text text-muted">Urutan tampil (0 = paling atas)</small>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Status</label>
+      <select class="form-select" name="status">
+        <option value="1" {% if project and project['status']==1 %}selected{% endif %}>Active</option>
+        <option value="0" {% if project and project['status']==0 %}selected{% endif %}>Inactive</option>
+      </select>
+    </div>
+    
+    {% if project and project['image_url'] %}
+    <div class="mb-3">
+      <label class="form-label">Current Image</label>
+      <div>
+        <img src="{{ url_for('pictures', filename=project['image_url'].split('/')[-1]) }}" 
+             alt="Current Image" 
+             class="img-thumbnail" 
+             style="max-width: 200px; max-height: 150px;">
+        <br>
+        <small class="text-muted">Gambar saat ini</small>
+      </div>
+    </div>
+    {% endif %}
+    
+    <div class="mb-3">
+      <label class="form-label">Image (upload)</label>
+      <input type="file" name="image" class="form-control" accept="image/*">
+      <small class="form-text text-muted">
+        {% if project %}
+          Jika tidak diisi, akan tetap menggunakan gambar yang ada.
+        {% else %}
+          Upload gambar untuk project ini.
+        {% endif %}
+      </small>
+    </div>
+    
+    {% if project %}
+    <input type="hidden" name="image_url" value="{{ project['image_url'] if project else '' }}">
+    {% endif %}
+    
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save me-1"></i>{{ 'Update Project' if project else 'Add Project' }}
+      </button>
+      <a href="{{ url_for('projects_page') }}" class="btn btn-secondary">
+        <i class="fas fa-times me-1"></i>Cancel
+      </a>
+    </div>
+  </form>
+</div>
+{% endblock %}

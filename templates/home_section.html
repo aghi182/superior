@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Home Section</h2>
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Hero Title 1</label>
+      <input type="text" class="form-control" name="hero_title1" value="{{ home.hero_title1 if home else '' }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Hero Title 2</label>
+      <input type="text" class="form-control" name="hero_title2" value="{{ home.hero_title2 if home else '' }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Hero Subtitle</label>
+      <textarea class="form-control" name="hero_subtitle">{{ home.hero_subtitle if home else '' }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Button Text</label>
+      <input type="text" class="form-control" name="hero_button_text" value="{{ home.hero_button_text if home else '' }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Button Link</label>
+      <input type="text" class="form-control" name="hero_button_link" value="{{ home.hero_button_link if home else '' }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Simpan</button>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Kembali</a>
+  </form>
+</div>
+{% endblock %}

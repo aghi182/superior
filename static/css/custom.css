@@ -1,0 +1,5 @@
+/* static/css/custom.css */
+body { background:#f6f8fb; }
+.sidebar { height:100vh; border-right:1px solid #e9ecef; }
+.card { border-radius:12px; }
+.list-group-item { border-radius:12px; margin-bottom:12px; background:white; }

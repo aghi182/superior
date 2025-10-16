@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Services Section</h2>
+  <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label class="form-label">Mechanical Title</label>
+      <input type="text" class="form-control" name="mechanical_title" value="{{ services.mechanical_title if services else '' }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Mechanical Description</label>
+      <textarea class="form-control" name="mechanical_description">{{ services.mechanical_description if services else '' }}</textarea>
+    </div>
+    {% if services and services.mechanical_image_url %}
+      <div class="mb-3">
+        <img src="/{{ services.mechanical_image_url }}" alt="Mechanical Image" class="img-thumbnail" style="max-width: 200px;">
+      </div>
+    {% endif %}
+    <div class="mb-3">
+      <label class="form-label">Upload Mechanical Image</label>
+      <input type="file" class="form-control" name="mechanical_image">
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+      <label class="form-label">Electrical Title</label>
+      <input type="text" class="form-control" name="electrical_title" value="{{ services.electrical_title if services else '' }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Electrical Description</label>
+      <textarea class="form-control" name="electrical_description">{{ services.electrical_description if services else '' }}</textarea>
+    </div>
+    {% if services and services.electrical_image_url %}
+      <div class="mb-3">
+        <img src="/{{ services.electrical_image_url }}" alt="Electrical Image" class="img-thumbnail" style="max-width: 200px;">
+      </div>
+    {% endif %}
+    <div class="mb-3">
+      <label class="form-label">Upload Electrical Image</label>
+      <input type="file" class="form-control" name="electrical_image">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Simpan</button>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Kembali</a>
+  </form>
+</div>
+{% endblock %}

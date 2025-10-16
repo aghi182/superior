@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Mission Section</h2>
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Judul</label>
+      <input type="text" class="form-control" name="title" value="{{ mission.title if mission else '' }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Deskripsi</label>
+      <textarea class="form-control" name="description">{{ mission.description if mission else '' }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Simpan</button>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Kembali</a>
+  </form>
+</div>
+{% endblock %}

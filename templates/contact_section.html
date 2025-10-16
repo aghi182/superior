@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Contact Section</h2>
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Judul</label>
+      <input type="text" class="form-control" name="title" value="{{ contact.title if contact else '' }}">
+    </div>
+
+    <h5>Kontak 1</h5>
+    <div class="mb-3">
+      <label>Nama</label>
+      <input type="text" class="form-control" name="person1_name" value="{{ contact.person1_name if contact else '' }}">
+    </div>
+    <div class="mb-3">
+      <label>No. Telepon</label>
+      <input type="text" class="form-control" name="person1_phone" value="{{ contact.person1_phone if contact else '' }}">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" name="person1_status" {% if contact and contact.person1_status %}checked{% endif %}>
+      <label class="form-check-label">Aktif</label>
+    </div>
+
+    <h5>Kontak 2</h5>
+    <div class="mb-3">
+      <label>Nama</label>
+      <input type="text" class="form-control" name="person2_name" value="{{ contact.person2_name if contact else '' }}">
+    </div>
+    <div class="mb-3">
+      <label>No. Telepon</label>
+      <input type="text" class="form-control" name="person2_phone" value="{{ contact.person2_phone if contact else '' }}">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" name="person2_status" {% if contact and contact.person2_status %}checked{% endif %}>
+      <label class="form-check-label">Aktif</label>
+    </div>
+
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" class="form-control" name="email" value="{{ contact.email if contact else '' }}">
+    </div>
+
+    <div class="mb-3">
+      <label>Template WhatsApp</label>
+      <textarea class="form-control" name="text_wa" rows="3" placeholder="Masukkan template pesan WhatsApp...">{{ contact.text_wa if contact else '' }}</textarea>
+      <small class="form-text text-muted">Template ini akan digunakan untuk semua link WhatsApp</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Simpan</button>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Kembali</a>
+  </form>
+</div>
+{% endblock %}

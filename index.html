@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Superior Teknik Indonesia - Company Profile</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://sql.js.org; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com https://unpkg.com; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:8000 http://127.0.0.1:8000 https: https://sql.js.org; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), speaker=(), vibrate=(), fullscreen=(self), sync-xhr=()">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
+    
+    <!-- External Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="pictures/logo.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="PT. Superior Teknik Indonesia - Perusahaan engineering dan konstruksi yang mengkhususkan diri dalam layanan Mechanical, Electrical, dan Plumbing (MEP) sejak 2022.">
+    <meta name="keywords" content="engineering, konstruksi, MEP, HVAC, electrical, mechanical, plumbing, Indonesia">
+    <meta name="author" content="PT. Superior Teknik Indonesia">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="PT. Superior Teknik Indonesia - Company Profile">
+    <meta property="og:description" content="Engineering Excellence Since 2022 - Layanan MEP terpercaya di Indonesia">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="pictures/company-profile.png">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PT. Superior Teknik Indonesia">
+    <meta name="twitter:description" content="Engineering Excellence Since 2022">
+    <meta name="twitter:image" content="pictures/company-profile.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="pictures/logo.png" alt="Logo PT. Superior Teknik Indonesia" class="logo-img">
+                <span class="brand-text">PT. Superior Teknik Indonesia</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#vision">Vision</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" id="refreshContentBtn" title="Refresh Content">
+                            <i class="fas fa-sync-alt me-1"></i>Refresh
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" target="_blank">
+                            <i class="fas fa-cog me-1"></i>Admin
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
+                    <div class="hero-content">
+                        <div class="hero-logo-section">
+                            <div class="company-logo">
+                                <div class="logo-graphic">
+                                    <div class="logo-symbol-purple">S</div>
+                                    <div class="logo-symbol-blue">T</div>
+                                    <div class="logo-accent"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 class="hero-title">
+                            <span class="title-part-1">PT. Superior</span>
+                            <span class="title-part-2">Teknik Indonesia</span>
+                        </h1>
+                        <p class="hero-subtitle">Engineering Excellence Since 2022</p>
+                        <div class="hero-buttons">
+                            <a href="#about" class="btn btn-primary btn-lg me-3">Learn More</a>
+                            <a href="#contact" class="btn btn-outline-light btn-lg">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="800">
+                    <div class="hero-logo">
+                        <div class="logo-container">
+                            <div class="logo-symbol">S</div>
+                            <div class="logo-text">PT. SUPERIOR TEKNIK INDONESIA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Company Profile Section -->
+    <section id="about" class="about-section py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Gambar -->
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <div id="aboutCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner rounded shadow">
+            {% for img in data.about_images %}
+            <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+              <img src="{{ url_for('static', filename=img) }}" class="d-block w-100" alt="About Image">
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Konten -->
+      <div class="col-lg-6">
+        {% if data.about %}
+        <h2 class="fw-bold text-uppercase mb-3">{{ data.about['title'] }}</h2>
+        <hr style="width: 80px; height: 4px; background: linear-gradient(90deg,#0d6efd,#8a2be2); border: none; margin-left: 0;">
+        <p class="lead">{{ data.about['description'] }}</p>
+
+        <div class="row text-center mt-4">
+          <div class="col-4">
+            <h3 class="fw-bold text-primary">50+</h3>
+            <p class="small text-muted">Projects Completed</p>
+          </div>
+          <div class="col-4">
+            <h3 class="fw-bold text-primary">4+</h3>
+            <p class="small text-muted">Years Experience</p>
+          </div>
+          <div class="col-4">
+            <h3 class="fw-bold text-primary">100%</h3>
+            <p class="small text-muted">Client Satisfaction</p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <h2 class="section-title text-center mb-5">COMPLETED AND ONGOING PROJECTS</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="pictures/project-1.png" 
+                                 alt="HVAC Data Center JKT02 - Jaya Obayashi" 
+                                 class="img-fluid" 
+                                 loading="lazy"
+                                 width="300"
+                                 height="200"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display:none; background:#f8f9fa; border:2px dashed #dee2e6; padding:1rem; text-align:center; height:200px; display:flex; align-items:center; justify-content:center;">
+                                <i class="fas fa-image fa-2x text-muted"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h4>HVAC - Data Center JKT02</h4>
+                            <p>Jaya Obayashi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="pictures/project-2.png" 
+                                 alt="MEP Ellipse Data Center Control Systems" 
+                                 class="img-fluid" 
+                                 loading="lazy"
+                                 width="300"
+                                 height="200">
+                        </div>
+                        <div class="project-content">
+                            <h4>MEP - Ellipse Data Center</h4>
+                            <p>Control Systems</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card featured">
+                        <div class="project-image">
+                            <img src="pictures/project-3.png" 
+                                 alt="VRV Masjid Sheikh Zayed Solo Air Conditioning" 
+                                 class="img-fluid" 
+                                 loading="lazy"
+                                 width="300"
+                                 height="200">
+                        </div>
+                        <div class="project-content">
+                            <h4>VRV - Masjid Sheikh Zayed Solo</h4>
+                            <p>Air Conditioning</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="pictures/project-4.png" 
+                                 alt="Clean Room Paragon Technology Specialized Environment" 
+                                 class="img-fluid" 
+                                 loading="lazy"
+                                 width="300"
+                                 height="200">
+                        </div>
+                        <div class="project-content">
+                            <h4>Clean Room - Paragon Technology</h4>
+                            <p>Specialized Environment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="pictures/project-5.png" 
+                                 alt="AHU Repair Borobudur Hotel Maintenance Services" 
+                                 class="img-fluid" 
+                                 loading="lazy"
+                                 width="300"
+                                 height="200">
+                        </div>
+                        <div class="project-content">
+                            <h4>AHU Repair - Borobudur Hotel</h4>
+                            <p>Maintenance Services</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="project-card featured">
+                        <div class="project-image">
+                            <img src="pictures/project-6.png" 
+                                 alt="HVAC Pertamina Plaju Industrial Solutions" 
+                                 class="img-fluid" 
+                                 loading="lazy"
+                                 width="300"
+                                 height="200">
+                        </div>
+                        <div class="project-content">
+                            <h4>HVAC - Pertamina Plaju</h4>
+                            <p>Industrial Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="700">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="pictures/project-7.png" 
+                                 alt="JKT 02 ANNEX Building Extension" 
+                                 class="img-fluid" 
+                                 loading="lazy"
+                                 width="300"
+                                 height="200">
+                        </div>
+                        <div class="project-content">
+                            <h4>JKT 02 ANNEX</h4>
+                            <p>Building Extension</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="800">
+                    <div class="project-card featured">
+                        <div class="project-image">
+                            <img src="pictures/project-8.png" 
+                                 alt="JKT09 GIS SUBSTATION Electrical Infrastructure" 
+                                 class="img-fluid" 
+                                 loading="lazy"
+                                 width="300"
+                                 height="200">
+                        </div>
+                        <div class="project-content">
+                            <h4>JKT09 GIS SUBSTATION</h4>
+                            <p>Electrical Infrastructure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="vision-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <h2 class="section-title text-center mb-5">THE VISION</h2>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="vision-image">
+                        <img src="pictures/vision-bg.png" 
+                             alt="Data Center Vision - PT. Superior Teknik Indonesia" 
+                             class="img-fluid rounded" 
+                             loading="lazy"
+                             width="600"
+                             height="400"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div style="display:none; background:#f8f9fa; border:2px dashed #dee2e6; padding:2rem; text-align:center; border-radius:20px;">
+                            <i class="fas fa-eye fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">Gambar Vision</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="vision-content">
+                        <h3 class="vision-title">To be the most trusted and preferred partner for engineering and construction solutions in Indonesia.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <h2 class="section-title text-center mb-5">THE MISSION</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mission-flow">
+                        <div class="mission-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="mission-box quality">
+                                <h4>Quality</h4>
+                                <p>Deliver high value</p>
+                            </div>
+                        </div>
+                        <div class="mission-item" data-aos="fade-up" data-aos-delay="200">
+                            <div class="mission-box competitiveness">
+                                <h4>Competitiveness</h4>
+                                <p>Best market pricing</p>
+                            </div>
+                        </div>
+                        <div class="mission-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="mission-box concreteness">
+                                <h4>Concreteness</h4>
+                                <p>Sustainable growth</p>
+                            </div>
+                        </div>
+                        <div class="mission-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="mission-box punctuality">
+                                <h4>Punctuality</h4>
+                                <p>On-time delivery</p>
+                            </div>
+                        </div>
+                        <div class="mission-item" data-aos="fade-up" data-aos-delay="500">
+                            <div class="mission-box satisfaction">
+                                <h4>Satisfaction</h4>
+                                <p>Client-focused outcomes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section py-5">
+        <div class="container">
+            <!-- Mechanical Systems -->
+            <div class="service-category mb-5">
+                <div class="row">
+                    <div class="col-12" data-aos="fade-up">
+                        <h2 class="service-title">
+                            <span class="title-prefix">WHAT WE DO :</span>
+                            <span class="title-main">MECHANICAL SYSTEM</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-image">
+                            <img src="pictures/mechanical-1.png" 
+                                 alt="HVAC Systems - PT. Superior Teknik Indonesia" 
+                                 class="img-fluid rounded" 
+                                 loading="lazy"
+                                 width="400"
+                                 height="300">
+                        </div>
+                    </div>
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-image">
+                            <img src="pictures/mechanical-2.png" 
+                                 alt="Fire Fighting Systems - PT. Superior Teknik Indonesia" 
+                                 class="img-fluid rounded" 
+                                 loading="lazy"
+                                 width="400"
+                                 height="300">
+                        </div>
+                    </div>
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-image">
+                            <img src="pictures/mechanical-3.png" 
+                                 alt="Utility & Process Systems - PT. Superior Teknik Indonesia" 
+                                 class="img-fluid rounded" 
+                                 loading="lazy"
+                                 width="400"
+                                 height="300">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="service-categories">
+                            <div class="row g-3">
+                                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="service-category-item hvac">
+                                        <h4>HVAC</h4>
+                                        <ul>
+                                            <li>VRV System</li>
+                                            <li>Chilled Water System</li>
+                                            <li>Ductworks</li>
+                                            <li>etc.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                                    <div class="service-category-item fire-fighting">
+                                        <h4>Fire Fighting</h4>
+                                        <ul>
+                                            <li>Sprinklers</li>
+                                            <li>Hydrants</li>
+                                            <li>Fire Suppression</li>
+                                            <li>etc.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                                    <div class="service-category-item utility">
+                                        <h4>Utility & Process</h4>
+                                        <ul>
+                                            <li>Gas piping</li>
+                                            <li>Compressed Air</li>
+                                            <li>Chiller, Boiler</li>
+                                            <li>etc.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Electrical Systems -->
+            <div class="service-category">
+                <div class="row">
+                    <div class="col-12" data-aos="fade-up">
+                        <h2 class="service-title">
+                            <span class="title-prefix">WHAT WE DO :</span>
+                            <span class="title-main">ELECTRICAL SYSTEM</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-image">
+                            <img src="pictures/electrical-1.png" 
+                                 alt="Power Distribution Systems - PT. Superior Teknik Indonesia" 
+                                 class="img-fluid rounded" 
+                                 loading="lazy"
+                                 width="400"
+                                 height="300">
+                        </div>
+                    </div>
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-image">
+                            <img src="pictures/electrical-2.png" 
+                                 alt="Low Current Systems - PT. Superior Teknik Indonesia" 
+                                 class="img-fluid rounded" 
+                                 loading="lazy"
+                                 width="400"
+                                 height="300">
+                        </div>
+                    </div>
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-image">
+                            <img src="pictures/electrical-3.png" 
+                                 alt="General Electrical Systems - PT. Superior Teknik Indonesia" 
+                                 class="img-fluid rounded" 
+                                 loading="lazy"
+                                 width="400"
+                                 height="300">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="service-categories">
+                            <div class="row g-3">
+                                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="service-category-item power">
+                                        <h4>Power Distribution</h4>
+                                        <p>MV/LV panels, Cabling.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                                    <div class="service-category-item low-current">
+                                        <h4>Low Current</h4>
+                                        <p>BMS, Fire Alarms.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                                    <div class="service-category-item general">
+                                        <h4>General Electrical</h4>
+                                        <p>Lighting, wiring, Electrical Instruments.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <h2 class="section-title text-center mb-5">Contact Us</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-cards">
+                        <div class="row g-4">
+                            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                <div class="contact-card">
+                                    <h4>Caesar Adam</h4>
+                                    <a href="https://wa.me/6282110339662?text=Halo%20PT%20Superior%20Teknik%20Indonesia%20👋%0A%0ASaya%20ingin%20menanyakan%20informasi%20lebih%20lanjut%20mengenai%20layanan%20dan%20produk%20Anda.%0A%0ANama:%20%0AEmail:%20%0APerusahaan%20(jika%20ada):%20%0AKebutuhan%20saya:%20%0A%0ATerima%20kasih%20🙏" 
+                                       class="contact-phone" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       aria-label="WhatsApp Caesar Adam">
+                                        <i class="fab fa-whatsapp" aria-hidden="true"></i> +62 821-1033-9662
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                                <div class="contact-card">
+                                    <h4>Ramdan Zulfikar</h4>
+                                    <a href="https://wa.me/6285723777666?text=Halo%20PT%20Superior%20Teknik%20Indonesia%20👋%0A%0ASaya%20ingin%20menanyakan%20informasi%20lebih%20lanjut%20mengenai%20layanan%20dan%20produk%20Anda.%0A%0ANama:%20%0AEmail:%20%0APerusahaan%20(jika%20ada):%20%0AKebutuhan%20saya:%20%0A%0ATerima%20kasih%20🙏" 
+                                       class="contact-phone" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       aria-label="WhatsApp Ramdan Zulfikar">
+                                        <i class="fab fa-whatsapp" aria-hidden="true"></i> +62 857-2377-7666
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12" data-aos="fade-up" data-aos-delay="300">
+                                <div class="contact-card email-card">
+                                    <a href="mailto:admin@superiorteknindo.com?subject=Informasi%20Layanan%20PT%20Superior%20Teknik%20Indonesia&body=Halo%20PT%20Superior%20Teknik%20Indonesia%20👋%0A%0ASaya%20ingin%20menanyakan%20informasi%20lebih%20lanjut%20mengenai%20layanan%20dan%20produk%20Anda.%0A%0ANama:%20%0AEmail:%20%0APerusahaan%20(jika%20ada):%20%0AKebutuhan%20saya:%20%0A%0ATerima%20kasih%20🙏" 
+                                       class="email-link" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       aria-label="Email PT. Superior Teknik Indonesia">
+                                        <h4><i class="fas fa-envelope" aria-hidden="true"></i> admin@superiorteknindo.com</h4>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/6282110339662?text=Halo%20PT%20Superior%20Teknik%20Indonesia%20👋%0A%0ASaya%20ingin%20menanyakan%20informasi%20lebih%20lanjut%20mengenai%20layanan%20dan%20produk%20Anda.%0A%0ANama:%20%0AEmail:%20%0APerusahaan%20(jika%20ada):%20%0AKebutuhan%20saya:%20%0A%0ATerima%20kasih%20🙏" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="whatsapp-btn"
+           aria-label="Chat dengan kami via WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            <span class="whatsapp-tooltip">Chat dengan kami</span>
+        </a>
+    </div>
+
+    <!-- Jump to Top Button -->
+    <div class="jump-to-top">
+        <button class="jump-to-top-btn" aria-label="Kembali ke atas">
+            <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            <span class="jump-tooltip">Kembali ke atas</span>
+        </button>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 PT. Superior Teknik Indonesia. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Company Profile / 2025</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="image-fallback.js"></script>
+    <script src="security.js"></script>
+    <script src="performance.js"></script>
+    <script src="php-api.js"></script>
+    <script src="dynamic-content.js"></script>
+    <script src="realtime-polling.js"></script>
+    <script src="script.min.js"></script>
+    
+    <script>
+        // Initialize dynamic content manager
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('🚀 Index.html DOM loaded, initializing...');
+            
+            try {
+                // Initialize API manager
+                window.apiManager = new PHPAPIManager();
+                await window.apiManager.init();
+                console.log('✅ API Manager initialized for index.html');
+                
+                // Initialize real-time polling untuk index.html
+                initializeIndexPolling();
+                
+                // Initialize dynamic content manager
+                window.dynamicContentManager = new DynamicContentManager();
+                console.log('✅ Dynamic Content Manager initialized');
+                
+                // Force reload content after initialization
+                setTimeout(async () => {
+                    if (window.dynamicContentManager) {
+                        console.log('🔄 Force reloading content from database...');
+                        await window.dynamicContentManager.loadContent();
+                        console.log('✅ Content reloaded from database');
+                        
+                        // Verify content was updated
+                        const title1 = document.querySelector('.title-part-1')?.textContent;
+                        const title2 = document.querySelector('.title-part-2')?.textContent;
+                        console.log('📝 Current page titles:', { title1, title2 });
+                    }
+                }, 2000);
+                
+            } catch (error) {
+                console.error('❌ Error initializing API Manager:', error);
+                // Still initialize dynamic content manager with default data
+                window.dynamicContentManager = new DynamicContentManager();
+                console.log('⚠️ Using default data due to API error');
+            }
+        });
+        
+        // Initialize real-time polling untuk index.html
+        function initializeIndexPolling() {
+            console.log('🔄 Initializing real-time polling for index.html...');
+            
+            // Create polling manager khusus untuk index
+            window.indexPolling = new RealtimePollingManager({
+                apiUrl: 'get_data.php',
+                pollInterval: 1800000, // 30 menit
+                dataContainer: null, // Tidak perlu container khusus
+                onDataUpdate: function(data) {
+                    console.log('📊 Index data updated via polling:', data);
+                    // Update content di halaman index
+                    updateIndexContent(data);
+                },
+                onError: function(error) {
+                    console.warn('⚠️ Index polling error:', error.message);
+                    // Jangan hentikan polling jika ada error
+                }
+            });
+            
+            // Start polling otomatis
+            window.indexPolling.startPolling();
+            
+            console.log('✅ Index real-time polling initialized');
+        }
+        
+        // Update content di halaman index
+        function updateIndexContent(data) {
+            try {
+                // Update hero section
+                if (data.home) {
+                    const title1 = document.querySelector('.title-part-1');
+                    const title2 = document.querySelector('.title-part-2');
+                    const subtitle = document.querySelector('.hero-subtitle');
+                    const description = document.querySelector('.hero-description');
+                    
+                    if (title1 && data.home.hero_title1) {
+                        title1.textContent = data.home.hero_title1;
+                    }
+                    if (title2 && data.home.hero_title2) {
+                        title2.textContent = data.home.hero_title2;
+                    }
+                    if (subtitle && data.home.hero_subtitle) {
+                        subtitle.textContent = data.home.hero_subtitle;
+                    }
+                    if (description && data.home.hero_description) {
+                        description.textContent = data.home.hero_description;
+                    }
+                }
+                
+                // Update about section
+                if (data.about) {
+                    const aboutTitle = document.querySelector('.about-title');
+                    const aboutDescription = document.querySelector('.about-description');
+                    const statProjects = document.querySelector('.stat-projects');
+                    const statYears = document.querySelector('.stat-years');
+                    const statSatisfaction = document.querySelector('.stat-satisfaction');
+                    
+                    if (aboutTitle && data.about.title) {
+                        aboutTitle.textContent = data.about.title;
+                    }
+                    if (aboutDescription && data.about.description) {
+                        aboutDescription.textContent = data.about.description;
+                    }
+                    if (statProjects && data.about.stat_projects) {
+                        statProjects.textContent = data.about.stat_projects;
+                    }
+                    if (statYears && data.about.stat_years) {
+                        statYears.textContent = data.about.stat_years;
+                    }
+                    if (statSatisfaction && data.about.stat_satisfaction) {
+                        statSatisfaction.textContent = data.about.stat_satisfaction;
+                    }
+                }
+                
+                // Update contact section
+                if (data.contact) {
+                    const contactTitle = document.querySelector('.contact-title');
+                    const contactPerson1 = document.querySelector('.contact-person-1');
+                    const contactPhone1 = document.querySelector('.contact-phone-1');
+                    const contactPerson2 = document.querySelector('.contact-person-2');
+                    const contactPhone2 = document.querySelector('.contact-phone-2');
+                    const contactEmail = document.querySelector('.contact-email');
+                    
+                    if (contactTitle && data.contact.title) {
+                        contactTitle.textContent = data.contact.title;
+                    }
+                    if (contactPerson1 && data.contact.person1) {
+                        contactPerson1.textContent = data.contact.person1;
+                    }
+                    if (contactPhone1 && data.contact.phone1) {
+                        contactPhone1.textContent = data.contact.phone1;
+                    }
+                    if (contactPerson2 && data.contact.person2) {
+                        contactPerson2.textContent = data.contact.person2;
+                    }
+                    if (contactPhone2 && data.contact.phone2) {
+                        contactPhone2.textContent = data.contact.phone2;
+                    }
+                    if (contactEmail && data.contact.email) {
+                        contactEmail.textContent = data.contact.email;
+                    }
+                }
+                
+                console.log('✅ Index content updated with latest data');
+                
+            } catch (error) {
+                console.error('❌ Error updating index content:', error);
+            }
+        }
+        
+        // Add refresh button event listener
+        document.getElementById('refreshContentBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('🔄 Manual refresh triggered');
+            if (window.indexPolling) {
+                window.indexPolling.refreshNow();
+            }
+            if (window.dynamicContentManager) {
+                window.dynamicContentManager.loadContent();
+            }
+        });
+    </script>
+</body>
+</html>
