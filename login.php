@@ -119,7 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="text-center mt-3">
               <small class="text-muted">
                 <i class="fas fa-info-circle me-1"></i>
-                Default: admin / admin123
               </small>
             </div>
           </div>

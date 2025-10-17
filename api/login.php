@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = sanitizeInput($input['password'] ?? '');
     
     // Simple hardcoded login - ganti dengan database authentication di production
-    if ($username === 'admin' && $password === 'admin123') {
+    if ($username === 'admin' && $password === 'Superior@2025') {
         startSecureSession();
         $_SESSION['logged_in'] = true;
         
