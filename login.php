@@ -14,14 +14,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = sanitizeInput($_POST['username'] ?? '');
     $password = sanitizeInput($_POST['password'] ?? '');
     
-    // Simple hardcoded login - ganti dengan database authentication di production
-    if ($username === 'admin' && $password === 'admin123') {
-        startSecureSession();
-        $_SESSION['logged_in'] = true;
-        header('Location: dashboard.php');
-        exit();
-    } else {
-        $error_message = 'Username atau password salah!';
+    try {
+        // Query database untuk mencari user
+        $stmt = $pdo->prepare("SELECT id, username, password, full_name, role, status FROM admin_users WHERE username = ? AND status = 1");
+        $stmt->execute([$username]);
+        $user = $stmt->fetch();
+        
+        if ($user && password_verify($password, $user['password'])) {
+            startSecureSession();
+            $_SESSION['logged_in'] = true;
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['full_name'] = $user['full_name'];
+            $_SESSION['role'] = $user['role'];
+            header('Location: dashboard.php');
+            exit();
+        } else {
+            $error_message = 'Username atau password salah!';
+        }
+    } catch (PDOException $e) {
+        $error_message = 'Terjadi kesalahan sistem. Silakan coba lagi.';
     }
 }
 ?>

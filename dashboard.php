@@ -174,10 +174,20 @@ try {
         <i class="fas fa-plus me-2"></i>
         <span class="sidebar-text">Add Project</span>
       </a>
+      <?php if ($_SESSION['role'] === 'admin'): ?>
+      <a class="nav-link" href="admin/user_management.php">
+        <i class="fas fa-users me-2"></i>
+        <span class="sidebar-text">User Management</span>
+      </a>
+      <?php endif; ?>
       <hr class="text-white">
       <a class="nav-link" href="index.php" target="_blank">
         <i class="fas fa-external-link-alt me-2"></i>
         <span class="sidebar-text">View Website</span>
+      </a>
+      <a class="nav-link" href="admin/change_password.php">
+        <i class="fas fa-key me-2"></i>
+        <span class="sidebar-text">Change Password</span>
       </a>
       <a class="nav-link" href="login.php?logout=1">
         <i class="fas fa-sign-out-alt me-2"></i>
@@ -198,12 +208,23 @@ try {
           <i class="fas fa-cogs me-2"></i>Admin Dashboard
         </a>
         <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="index.php" target="_blank">
-            <i class="fas fa-external-link-alt me-1"></i>View Website
-          </a>
-          <a class="nav-link" href="login.php?logout=1">
-            <i class="fas fa-sign-out-alt me-1"></i>Logout
-          </a>
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user me-1"></i><?php echo htmlspecialchars($_SESSION['full_name'] ?? $_SESSION['username']); ?>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="admin/change_password.php">
+                <i class="fas fa-key me-2"></i>Change Password
+              </a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="index.php" target="_blank">
+                <i class="fas fa-external-link-alt me-2"></i>View Website
+              </a></li>
+              <li><a class="dropdown-item" href="login.php?logout=1">
+                <i class="fas fa-sign-out-alt me-2"></i>Logout
+              </a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>

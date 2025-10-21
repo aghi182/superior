@@ -13,6 +13,10 @@ define('DB_PATH', __DIR__ . '/website.db');
 define('UPLOAD_FOLDER', __DIR__ . '/pictures');
 define('ALLOWED_EXTENSIONS', ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'ico']);
 
+// Session configuration
+define('SESSION_TIMEOUT', 600); // 10 minutes in seconds
+define('SESSION_NAME', 'SUPERIOR_ADMIN_SESSION');
+
 // Ensure upload folder exists
 if (!file_exists(UPLOAD_FOLDER)) {
     mkdir(UPLOAD_FOLDER, 0755, true);
@@ -71,15 +75,37 @@ function handleCorsPreflight() {
  */
 function startSecureSession() {
     if (session_status() === PHP_SESSION_NONE) {
+        // Set session name
+        session_name(SESSION_NAME);
+        
+        // Set session timeout
+        ini_set('session.gc_maxlifetime', SESSION_TIMEOUT);
+        ini_set('session.cookie_lifetime', SESSION_TIMEOUT);
+        
+        // Start session
         session_start();
+        
+        // Check session timeout
+        if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > SESSION_TIMEOUT)) {
+            // Session expired
+            session_unset();
+            session_destroy();
+            return false;
+        }
+        
+        // Update last activity time
+        $_SESSION['last_activity'] = time();
     }
+    return true;
 }
 
 /**
  * Helper function untuk check login status
  */
 function isLoggedIn() {
-    startSecureSession();
+    if (!startSecureSession()) {
+        return false;
+    }
     return isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 }
 
