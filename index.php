@@ -56,6 +56,20 @@ try {
   <link href="static/css/style.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
+    /* Blok seleksi teks dan copy */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Blok drag gambar juga */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
     /* Hero Section */
     #hero {
       position: relative;
@@ -1082,5 +1096,43 @@ try {
       });
     });
   </script>
+<!-- Anti Copy & Inspect Protection -->
+<script>
+  // Nonaktifkan klik kanan
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
+  // Nonaktifkan shortcut keyboard untuk inspect dan view source
+  document.onkeydown = function(e) {
+    if (e.keyCode == 123) { // F12
+      return false;
+    }
+    if (e.ctrlKey && e.shiftKey && 
+        (e.keyCode == 'I'.charCodeAt(0) || 
+         e.keyCode == 'J'.charCodeAt(0) || 
+         e.keyCode == 'C'.charCodeAt(0))) {
+      return false;
+    }
+    if (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0))) {
+      return false;
+    }
+  };
+
+  // Deteksi developer tools terbuka
+  (function() {
+    const devtools = /./;
+    devtools.toString = function() { this.opened = true; };
+    setInterval(function() {
+      const before = new Date();
+      console.profile();
+      console.profileEnd();
+      if (before - new Date() > 100 || devtools.opened) {
+        document.body.innerHTML = "<h1 style='text-align:center;margin-top:20%;color:red'>❌ Developer Tools tidak diizinkan ❌</h1>";
+      }
+    }, 1000);
+  })();
+</script>
+
 </body>
 </html>

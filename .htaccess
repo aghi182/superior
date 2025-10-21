@@ -1,6 +1,28 @@
 # Enable rewrite engine
 RewriteEngine On
 
+# Hilangkan ekstensi .php (umum)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Redirect index.php ke root
+RewriteCond %{THE_REQUEST} \s/+(index)\.php[\s?/] [NC]
+RewriteRule ^index\.php$ / [R=301,L]
+
+# ============================
+# ADMIN REWRITE CLEAN URL
+# ============================
+# Map URL frontend ke file di folder admin
+RewriteRule ^services$ admin/services.php [L]
+RewriteRule ^home$ admin/home.php [L]
+RewriteRule ^about$ admin/about.php [L]
+RewriteRule ^projects$ admin/projects.php [L]
+
+# Map URL dashboard ke file dashboard.php
+RewriteRule ^dashboard$ dashboard.php [L]
+
+
 # Handle CORS preflight requests
 RewriteCond %{REQUEST_METHOD} OPTIONS
 RewriteRule ^(.*)$ $1 [R=200,L]
