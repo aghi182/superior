@@ -328,9 +328,9 @@ try {
                 
                 <div class="mb-3">
                   <label for="text_wa" class="form-label">WhatsApp Message Text</label>
-                  <input type="text" class="form-control" id="text_wa" name="text_wa" 
-                         value="<?php echo htmlspecialchars($contact['text_wa'] ?? ''); ?>">
+                  <textarea class="form-control" id="text_wa" name="text_wa" rows="5"><?php echo htmlspecialchars($contact['text_wa'] ?? ''); ?></textarea>
                 </div>
+
               </div>
             </div>
           </div>
