@@ -70,7 +70,7 @@ img {
   user-drag: none;
 }
 
-    /* Hero Section */
+    /* Hero Section - Modern Glassmorphism Design */
     #hero {
       position: relative;
       height: 100vh;
@@ -78,8 +78,8 @@ img {
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
       color: #fff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
 
     #hero .parallax-layer {
@@ -97,34 +97,264 @@ img {
     #hero .layer-bg {
       background-image: url('pictures/hero-background.jpg');
       background-attachment: fixed;
-      filter: brightness(0.65);
+      filter: brightness(0.4) blur(1px);
       z-index: 1;
       transform: scale(1.05);
       transition: transform 0.5s ease;
     }
 
     #hero .layer-overlay {
-      background: rgba(0, 0, 0, 0.5);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.9) 100%);
       z-index: 2;
     }
 
     #hero .content {
       position: relative;
       z-index: 3;
-      max-width: 800px;
-      padding: 0 1rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
       animation: fadeDown 1.5s ease;
     }
 
-    #hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      line-height: 1.2;
+    /* Left Content Block */
+    .hero-left {
+      text-align: left;
     }
 
-    #hero p {
-      font-size: 1.25rem;
-      margin-top: 1rem;
+    .hero-logo-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .hero-logo-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .hero-logo-initials {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo-square {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .logo-square.s {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .logo-square.t {
+      background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+    }
+
+    .hero-company-name {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-company-name .superior {
+      background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-company-name .indonesia {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+      color: white;
+    }
+
+    .btn-hero-secondary {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      color: white;
+      padding: 10px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: white;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Right Content Block */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-large-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      padding: 4rem 3rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .hero-large-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-large-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-large-card:hover::before {
+      transform: translateX(100%);
+    }
+
+    .hero-large-s {
+      font-size: 8rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.3);
+      line-height: 1;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-large-text {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      #hero .content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+        padding: 0 1rem;
+      }
+      
+      .hero-left {
+        text-align: center;
+      }
+      
+      .hero-company-name {
+        font-size: 2.5rem;
+      }
+      
+      .hero-large-s {
+        font-size: 6rem;
+      }
+      
+      .hero-buttons {
+        justify-content: center;
+      }
+      
+      .hero-large-card {
+        padding: 3rem 2rem;
+      }
+      
+      .hero-logo-card {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-company-name {
+        font-size: 2rem;
+      }
+      
+      .hero-large-s {
+        font-size: 4rem;
+      }
+      
+      .hero-large-text {
+        font-size: 1.2rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-hero-primary,
+      .btn-hero-secondary {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+      }
     }
 
     @keyframes fadeDown {
@@ -576,7 +806,7 @@ img {
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#home">
-        <img src="pictures/logo.png" alt="PT Superior Teknik Indonesia" height="40">
+        <img src="pictures/logo.png" alt="PT Superior Teknik Indotama" height="50">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -616,15 +846,47 @@ img {
     <div class="parallax-layer layer-bg"></div>
     <div class="parallax-layer layer-overlay"></div>
     <div class="content" data-aos="fade-up" data-aos-duration="1000">
-      <h1><?php echo htmlspecialchars($data['home']['hero_title1'] ?? 'Welcome'); ?><br>
-        <span class="fw-bold"><?php echo htmlspecialchars($data['home']['hero_title2'] ?? 'Superior Teknik'); ?></span>
-      </h1>
-      <p><?php echo htmlspecialchars($data['home']['hero_subtitle'] ?? 'Engineering Excellence & Innovation'); ?></p>
-      <?php if ($data['home']['hero_button_text']): ?>
-      <a href="<?php echo htmlspecialchars($data['home']['hero_button_link'] ?? '#contact'); ?>" class="btn btn-primary btn-lg mt-3">
-        <?php echo htmlspecialchars($data['home']['hero_button_text']); ?>
-      </a>
-      <?php endif; ?>
+      <!-- Left Content Block -->
+      <div class="hero-left">
+        <!--<div class="hero-logo-card">
+          <div class="hero-logo-initials">
+            <div class="logo-square s">S</div>
+            <div class="logo-square t">T</div>
+          </div>
+        </div>-->  
+          <div class="hero-company-name">
+            <span class="superior"><?php echo htmlspecialchars($data['home']['hero_title2'] ?? 'Engineering Excellence Since 2022'); ?></span><br><br>
+            <span class="indonesia"> </span>
+          </div>
+          <div class="hero-tagline">
+            <?php echo htmlspecialchars($data['home']['hero_subtitle'] ?? 'Engineering Excellence Since 2022'); ?>
+          </div>
+        
+        <div class="hero-buttons">
+          <?php if ($data['home']['hero_button_text']): ?>
+          <a href="<?php echo htmlspecialchars($data['home']['hero_button_link'] ?? '#contact'); ?>" class="btn-hero-primary">
+            <?php echo htmlspecialchars($data['home']['hero_button_text']); ?>
+          </a>
+          <?php else: ?>
+          <a href="#about" class="btn-hero-primary">Learn More</a>
+          <?php endif; ?>
+          <a href="#contact" class="btn-hero-secondary">Contact Us</a>
+        </div>
+      </div>
+      
+      <!-- Right Content Block -->
+      <div class="hero-right">
+        <div class="hero-large-card">
+          <div class="hero-large-s"><img src="pictures/logo.png" alt="PT Superior Teknik Indonesia" height="150"></div>
+            <div class="hero-company-name">  
+              <div class="hero-large-text">  
+                <span class="superior">
+                  <?php echo htmlspecialchars($data['home']['hero_title1'] ?? 'PT Superior Teknik Indotama'); ?>
+                </span>
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
   </section>
 
