@@ -877,7 +877,7 @@ img {
       <!-- Right Content Block -->
       <div class="hero-right">
         <div class="hero-large-card">
-          <div class="hero-large-s"><img src="pictures/logo.png" alt="PT Superior Teknik Indonesia" height="150"></div>
+          <div class="hero-large-s"><img src="pictures/logo.png" alt="PT Superior Teknik Indonesia" height="250"></div>
             <div class="hero-company-name">  
               <div class="hero-large-text">  
                 <span class="superior">
@@ -1284,7 +1284,7 @@ img {
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <p>&copy; <?php echo $current_year; ?> PT. Superior Teknik Indonesia. All rights reserved.</p>
+          <p>&copy; <?php echo $current_year; ?> <?php echo htmlspecialchars($data['home']['hero_title1'] ?? 'PT Superior Teknik Indotama'); ?>. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-end">
           <p>Engineering Excellence</p>
