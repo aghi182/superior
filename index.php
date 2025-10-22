@@ -898,7 +898,7 @@ img {
           <div class="profile-image position-relative">
             <?php if ($data['about'] && $data['about']['images']): ?>
             <img 
-              src="pictures/<?php echo htmlspecialchars($data['about']['images']); ?>"
+              src="<?php echo htmlspecialchars($data['about']['images']); ?>"
               alt="Company Profile"
               class="img-fluid rounded shadow"
               loading="lazy"

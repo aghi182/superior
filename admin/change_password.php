@@ -8,6 +8,10 @@ if (!isLoggedIn()) {
     exit();
 }
 
+// Set current page for sidebar
+$current_page = 'change_password';
+$page_title = 'Change Password';
+
 $message = '';
 $message_type = '';
 
@@ -60,95 +64,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Change Password - PT. Superior Teknik Indonesia</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: #f8f9fa;
-        }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        .btn-action {
-            border-radius: 10px;
-            padding: 8px 16px;
-            font-weight: 600;
-        }
-    </style>
+    <?php include 'includes/styles.php'; ?>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <div class="text-center mb-4">
-                        <h5 class="text-white">
-                            <i class="fas fa-cogs me-2"></i>Admin Panel
-                        </h5>
-                    </div>
-                    <nav class="nav flex-column">
-                        <a class="nav-link text-white" href="../dashboard.php">
-                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
-                        </a>
-                        <a class="nav-link text-white" href="home.php">
-                            <i class="fas fa-home me-2"></i>Edit Home
-                        </a>
-                        <a class="nav-link text-white" href="about.php">
-                            <i class="fas fa-info-circle me-2"></i>Edit About
-                        </a>
-                        <a class="nav-link text-white" href="services.php">
-                            <i class="fas fa-cogs me-2"></i>Edit Services
-                        </a>
-                        <a class="nav-link text-white" href="vision.php">
-                            <i class="fas fa-eye me-2"></i>Edit Vision
-                        </a>
-                        <a class="nav-link text-white" href="mission.php">
-                            <i class="fas fa-target me-2"></i>Edit Mission
-                        </a>
-                        <a class="nav-link text-white" href="contact.php">
-                            <i class="fas fa-phone me-2"></i>Edit Contact
-                        </a>
-                        <a class="nav-link text-white" href="projects.php">
-                            <i class="fas fa-project-diagram me-2"></i>Manage Projects
-                        </a>
-                        <a class="nav-link text-white" href="projects_add.php">
-                            <i class="fas fa-plus me-2"></i>Add Project
-                        </a>
-                        <?php if ($_SESSION['role'] === 'admin'): ?>
-                        <a class="nav-link text-white" href="user_management.php">
-                            <i class="fas fa-users me-2"></i>User Management
-                        </a>
-                        <?php endif; ?>
-                        <hr class="text-white">
-                        <a class="nav-link text-white" href="../index.php" target="_blank">
-                            <i class="fas fa-external-link-alt me-2"></i>View Website
-                        </a>
-                        <a class="nav-link text-white" href="../login.php?logout=1">
-                            <i class="fas fa-sign-out-alt me-2"></i>Logout
-                        </a>
-                    </nav>
-                </div>
-            </div>
+    <?php include 'includes/sidebar.php'; ?>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <?php include 'includes/navbar.php'; ?>
+
+            
 
             <!-- Main content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2"><i class="fas fa-key me-2"></i>Change Password</h1>
-                    <div>
-                        <a href="../dashboard.php" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
-                        </a>
-                    </div>
+                    
                 </div>
-
-                <?php if ($message): ?>
-                <div class="alert alert-<?php echo $message_type; ?> alert-dismissible fade show" role="alert">
-                    <i class="fas fa-<?php echo $message_type === 'success' ? 'check-circle' : 'exclamation-triangle'; ?> me-2"></i>
-                    <?php echo htmlspecialchars($message); ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-                <?php endif; ?>
 
                 <div class="row justify-content-center">
                     <div class="col-md-6">
@@ -181,10 +113,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                 </div>
+                
+
+                <?php if ($message): ?>
+                <div class="alert alert-<?php echo $message_type; ?> alert-dismissible fade show" role="alert">
+                    <i class="fas fa-<?php echo $message_type === 'success' ? 'check-circle' : 'exclamation-triangle'; ?> me-2"></i>
+                    <?php echo htmlspecialchars($message); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <?php endif; ?>
             </main>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        </div> <!-- Close main-content -->
+        <?php include 'includes/scripts.php'; ?>
 </body>
 </html>

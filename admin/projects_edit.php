@@ -8,6 +8,10 @@ if (!isLoggedIn()) {
     exit();
 }
 
+// Set current page for sidebar
+$current_page = 'projects';
+$page_title = 'Edit Project';
+
 $id = (int)($_GET['id'] ?? 0);
 if ($id <= 0) {
     header('Location: projects.php');
@@ -80,15 +84,19 @@ try {
   <title>Edit Project - Admin Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <?php include 'includes/styles.php'; ?>
   <style>
-    body { background: #f8f9fa; }
-    .card { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
-    .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; }
     .image-preview { max-width: 200px; max-height: 200px; object-fit: cover; }
   </style>
 </head>
 <body>
-  <div class="container mt-4">
+  <?php include 'includes/sidebar.php'; ?>
+
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <?php include 'includes/navbar.php'; ?>
+
+    <div class="container mt-4">
     <div class="row">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -272,5 +280,7 @@ try {
       }
     });
   </script>
+  </div> <!-- Close main-content -->
+  <?php include 'includes/scripts.php'; ?>
 </body>
 </html>

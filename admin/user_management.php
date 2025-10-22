@@ -14,6 +14,10 @@ if ($_SESSION['role'] !== 'admin') {
     exit();
 }
 
+// Set current page for sidebar
+$current_page = 'user_management';
+$page_title = 'User Management';
+
 // Handle form submissions
 $message = '';
 $message_type = '';
@@ -105,149 +109,98 @@ try {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management - PT. Superior Teknik Indonesia</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: #f8f9fa;
-        }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        .btn-action {
-            border-radius: 10px;
-            padding: 8px 16px;
-            font-weight: 600;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management - PT. Superior Teknik Indonesia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <?php include 'includes/styles.php'; ?>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <div class="text-center mb-4">
-                        <h5 class="text-white">
-                            <i class="fas fa-cogs me-2"></i>Admin Panel
-                        </h5>
-                    </div>
-                    <nav class="nav flex-column">
-                        <a class="nav-link text-white" href="../dashboard.php">
-                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
-                        </a>
-                        <a class="nav-link text-white" href="home.php">
-                            <i class="fas fa-home me-2"></i>Edit Home
-                        </a>
-                        <a class="nav-link text-white" href="about.php">
-                            <i class="fas fa-info-circle me-2"></i>Edit About
-                        </a>
-                        <a class="nav-link text-white" href="services.php">
-                            <i class="fas fa-cogs me-2"></i>Edit Services
-                        </a>
-                        <a class="nav-link text-white" href="vision.php">
-                            <i class="fas fa-eye me-2"></i>Edit Vision
-                        </a>
-                        <a class="nav-link text-white" href="mission.php">
-                            <i class="fas fa-target me-2"></i>Edit Mission
-                        </a>
-                        <a class="nav-link text-white" href="contact.php">
-                            <i class="fas fa-phone me-2"></i>Edit Contact
-                        </a>
-                        <a class="nav-link text-white" href="projects.php">
-                            <i class="fas fa-project-diagram me-2"></i>Manage Projects
-                        </a>
-                        <a class="nav-link text-white" href="projects_add.php">
-                            <i class="fas fa-plus me-2"></i>Add Project
-                        </a>
-                        <a class="nav-link text-white active" href="user_management.php">
-                            <i class="fas fa-users me-2"></i>User Management
-                        </a>
-                        <hr class="text-white">
-                        <a class="nav-link text-white" href="../index.php" target="_blank">
-                            <i class="fas fa-external-link-alt me-2"></i>View Website
-                        </a>
-                        <a class="nav-link text-white" href="../login.php?logout=1">
-                            <i class="fas fa-sign-out-alt me-2"></i>Logout
-                        </a>
-                    </nav>
-                </div>
-            </div>
+  <?php include 'includes/sidebar.php'; ?>
 
-            <!-- Main content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2"><i class="fas fa-users me-2"></i>User Management</h1>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
-                        <i class="fas fa-plus me-2"></i>Add User
-                    </button>
-                </div>
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <?php include 'includes/navbar.php'; ?>
 
-                <?php if ($message): ?>
-                <div class="alert alert-<?php echo $message_type; ?> alert-dismissible fade show" role="alert">
-                    <i class="fas fa-<?php echo $message_type === 'success' ? 'check-circle' : 'exclamation-triangle'; ?> me-2"></i>
-                    <?php echo htmlspecialchars($message); ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-                <?php endif; ?>
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Username</th>
-                                        <th>Full Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                        <th>Created</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($users as $user): ?>
-                                    <tr>
-                                        <td><?php echo htmlspecialchars($user['username']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['full_name']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['email']); ?></td>
-                                        <td>
-                                            <span class="badge bg-<?php echo $user['role'] === 'admin' ? 'danger' : 'primary'; ?>">
-                                                <?php echo ucfirst($user['role']); ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="badge bg-<?php echo $user['status'] ? 'success' : 'secondary'; ?>">
-                                                <?php echo $user['status'] ? 'Active' : 'Inactive'; ?>
-                                            </span>
-                                        </td>
-                                        <td><?php echo date('d/m/Y', strtotime($user['created_at'])); ?></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editUser(<?php echo htmlspecialchars(json_encode($user)); ?>)">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <?php if ($user['id'] != $_SESSION['user_id']): ?>
-                                            <button class="btn btn-sm btn-danger" onclick="deleteUser(<?php echo $user['id']; ?>, '<?php echo htmlspecialchars($user['username']); ?>')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                            <?php endif; ?>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </main>
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="mb-3"><i class="fas fa-users me-2"></i>User Management</h2>
+          <p class="text-muted">Manage user accounts and permissions</p>
         </div>
+      </div>
+
+      <?php if ($message): ?>
+      <div class="alert alert-<?php echo $message_type; ?> alert-dismissible fade show" role="alert">
+        <i class="fas fa-<?php echo $message_type === 'success' ? 'check-circle' : 'exclamation-triangle'; ?> me-2"></i>
+        <?php echo htmlspecialchars($message); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+      <?php endif; ?>
+
+      <div class="row mb-3">
+        <div class="col-12">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            <i class="fas fa-plus me-2"></i>Add New User
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0"><i class="fas fa-users me-2"></i>User List</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($users as $user): ?>
+                <tr>
+                  <td><?php echo htmlspecialchars($user['username']); ?></td>
+                  <td><?php echo htmlspecialchars($user['full_name']); ?></td>
+                  <td><?php echo htmlspecialchars($user['email']); ?></td>
+                  <td>
+                    <span class="badge bg-<?php echo $user['role'] === 'admin' ? 'danger' : 'primary'; ?>">
+                      <?php echo ucfirst($user['role']); ?>
+                    </span>
+                  </td>
+                  <td>
+                    <span class="badge bg-<?php echo $user['status'] ? 'success' : 'secondary'; ?>">
+                      <?php echo $user['status'] ? 'Active' : 'Inactive'; ?>
+                    </span>
+                  </td>
+                  <td><?php echo date('d/m/Y', strtotime($user['created_at'])); ?></td>
+                  <td>
+                    <button class="btn btn-sm btn-warning" onclick="editUser(<?php echo htmlspecialchars(json_encode($user)); ?>)">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <?php if ($user['id'] != $_SESSION['user_id']): ?>
+                    <button class="btn btn-sm btn-danger" onclick="deleteUser(<?php echo $user['id']; ?>, '<?php echo htmlspecialchars($user['username']); ?>')">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                    <?php endif; ?>
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
     <!-- Add User Modal -->
     <div class="modal fade" id="addUserModal" tabindex="-1">
@@ -365,25 +318,25 @@ try {
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function editUser(user) {
-            document.getElementById('edit_user_id').value = user.id;
-            document.getElementById('edit_username').value = user.username;
-            document.getElementById('edit_full_name').value = user.full_name;
-            document.getElementById('edit_email').value = user.email;
-            document.getElementById('edit_role').value = user.role;
-            document.getElementById('edit_status').value = user.status;
-            
-            new bootstrap.Modal(document.getElementById('editUserModal')).show();
-        }
-        
-        function deleteUser(userId, username) {
-            document.getElementById('delete_user_id').value = userId;
-            document.getElementById('delete_username').textContent = username;
-            
-            new bootstrap.Modal(document.getElementById('deleteUserModal')).show();
-        }
-    </script>
+  <?php include 'includes/scripts.php'; ?>
+  <script>
+    function editUser(user) {
+      document.getElementById('edit_user_id').value = user.id;
+      document.getElementById('edit_username').value = user.username;
+      document.getElementById('edit_full_name').value = user.full_name;
+      document.getElementById('edit_email').value = user.email;
+      document.getElementById('edit_role').value = user.role;
+      document.getElementById('edit_status').value = user.status;
+      
+      new bootstrap.Modal(document.getElementById('editUserModal')).show();
+    }
+    
+    function deleteUser(userId, username) {
+      document.getElementById('delete_user_id').value = userId;
+      document.getElementById('delete_username').textContent = username;
+      
+      new bootstrap.Modal(document.getElementById('deleteUserModal')).show();
+    }
+  </script>
 </body>
 </html>
